@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEC Navigator QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        :root {
+            --primary: #2196F3;
+            --dark: #0d1b4a;
+            --bg: #f8fbff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            max-width: 400px;
+            border: 2px solid #eef2ff;
+        }
+        .header {
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+        h1 { margin: 0; font-size: 24px; font-weight: 800; }
+        p { color: #64748b; font-size: 14px; margin-top: 8px; }
+        
+        #qrcode-container {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .url-box {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--primary);
+            word-break: break-all;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .steps {
+            text-align: left;
+            font-size: 13px;
+            color: #475569;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+        }
+        .step { margin-bottom: 8px; display: flex; align-items: start; gap: 10px; }
+        .num { background: var(--primary); color: white; width: 18px; height: 18px; border-radius: 9px; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        
+        .btn-copy {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>📍 Scan QR Code</h1>
+            <p>Indoor Navigation System</p>
+        </div>
+
+        <div id="qrcode-container">
+            <canvas id="qrcode"></canvas>
+        </div>
+
+        <div class="url-box" id="expo-url">Loading URL...</div>
+
+        <div class="steps">
+            <div class="step"><div class="num">1</div><span>Open <strong>Expo Go</strong> on Android or iOS camera.</span></div>
+            <div class="step"><div class="num">2</div><span>Point at this QR code.</span></div>
+            <div class="step"><div class="num">3</div><span>Ensure your phone is on the <strong>same WiFi</strong> (10.22.x.x).</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Use the IP Address identified from metadata
+        const expoUrl = "exp://10.22.178.170:8081";
+        document.getElementById('expo-url').textContent = expoUrl;
+
+        QRCode.toCanvas(document.getElementById('qrcode'), expoUrl, {
+            width: 250,
+            margin: 1,
+            color: {
+                dark: '#0d1b4a',
+                light: '#ffffff'
+            }
+        }, function (error) {
+            if (error) console.error(error);
+            console.log('success!');
+        });
+    </script>
+</body>
+</html>

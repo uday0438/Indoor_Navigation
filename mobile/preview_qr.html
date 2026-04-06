@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEC Navigator — Expo Go Preview</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0d1b4a 0%, #1a2f6e 100%);
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            color: white;
+        }
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 24px; padding: 48px 40px;
+            text-align: center; max-width: 420px; width: 90%;
+        }
+        .logo { font-size: 48px; margin-bottom: 12px; }
+        h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; }
+        .sub { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; }
+        #qr-canvas {
+            margin: 28px auto; border-radius: 16px;
+            background: white; padding: 12px; display: inline-block;
+        }
+        #qr-canvas canvas { display: block; border-radius: 8px; }
+        .url-box {
+            background: rgba(255,255,255,0.1); border-radius: 10px;
+            padding: 12px 16px; font-family: monospace; font-size: 14px;
+            word-break: break-all; margin: 16px 0;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .steps {
+            text-align: left; margin-top: 24px;
+            font-size: 13px; color: rgba(255,255,255,0.75);
+        }
+        .steps li { margin-bottom: 8px; line-height: 1.5; }
+        .steps strong { color: white; }
+        .badge {
+            display: inline-block; background: rgba(76,175,80,0.2);
+            color: #81C784; border: 1px solid rgba(76,175,80,0.3);
+            padding: 4px 14px; border-radius: 20px; font-size: 12px;
+            font-weight: 600; margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">🧭</div>
+        <h1>KEC Navigator</h1>
+        <p class="sub">Indoor Navigation System — Expo Go Preview</p>
+        <span class="badge">● Server Running</span>
+        <div id="qr-canvas"></div>
+        <div class="url-box" id="expo-url">exp://10.22.178.170:8081</div>
+        <ol class="steps">
+            <li>Install <strong>Expo Go</strong> from Play Store / App Store</li>
+            <li>Make sure your phone is on the <strong>same WiFi network</strong></li>
+            <li>Open Expo Go and <strong>scan the QR code</strong> above</li>
+            <li>Or paste the URL above into Expo Go's URL field</li>
+        </ol>
+    </div>
+    <script>
+        const url = 'exp://10.22.178.170:8081';
+        QRCode.toCanvas(document.createElement('canvas'), url, {
+            width: 220, margin: 1,
+            color: { dark: '#0d1b4a', light: '#ffffff' }
+        }, function(err, canvas) {
+            if (!err) document.getElementById('qr-canvas').appendChild(canvas);
+        });
+    </script>
+</body>
+</html>

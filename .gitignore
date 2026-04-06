@@ -1,0 +1,64 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# Backend and general
+.env
+*.log
+*.txt
+backend_output.txt
+expo_final_qr_output.txt
+final_attempt_v2.txt
+final_backend_output.txt
+final_backend_output_v2.txt
+expo_err.txt
+expo_final_log.txt
+expo_go_link.txt
+expo_last_try.txt
+expo_link.txt
+expo_link_output.txt
+expo_link_v2.txt
+expo_log.txt
+expo_out.txt
+expo_response.txt
+expo_start_output.txt
+expo_tunnel_output.txt
+final_attempt.txt
+final_backend_log.txt
+final_expo_link.txt
+final_success_qr.txt
+final_test_qr.txt
+fresh_expo_link.txt
+ip_output.txt
+link_output.txt
+live_expo_err.txt
+live_expo_launch.txt
+live_expo_output.txt
+my_live_link.txt
+my_url.txt
+my_url_2.txt
+output.txt
+qr_ascii.txt
+qr_output.txt
+tunnel_link.txt
+tunnel_link_utf8.txt
+tunnel_output.txt
+
+# Databases
+*.db
+*.sqlite
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/

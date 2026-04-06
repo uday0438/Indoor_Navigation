@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KEC Indoor Navigation - Expo Go QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d1b4a 0%, #1a237e 50%, #283593 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #90caf9;
+        }
+        h2 {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: #b0bec5;
+        }
+        #qrCanvas {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+        .link-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            padding: 16px;
+            word-break: break-all;
+            margin-bottom: 16px;
+        }
+        .link-box a {
+            color: #64b5f6;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .link-box a:hover { text-decoration: underline; }
+        .instructions {
+            font-size: 13px;
+            color: #b0bec5;
+            line-height: 1.6;
+        }
+        .label {
+            font-size: 12px;
+            color: #78909c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏫 KEC Indoor Navigation</h1>
+        <h2>Scan with Expo Go to open the app</h2>
+        
+        <div id="qrCanvas"></div>
+        
+        <div class="label">Expo Go Link</div>
+        <div class="link-box">
+            <a href="exp://nnwekxm-anonymous-8081.exp.direct" id="expoLink">exp://nnwekxm-anonymous-8081.exp.direct</a>
+        </div>
+
+        <div class="instructions">
+            <p><strong>Instructions:</strong></p>
+            <p>1. Install <strong>Expo Go</strong> on your phone</p>
+            <p>2. Scan the QR code above with your phone camera</p>
+            <p>3. Or open the link in Expo Go app directly</p>
+        </div>
+    </div>
+
+    <script>
+        const url = "exp://nnwekxm-anonymous-8081.exp.direct";
+        QRCode.toCanvas(document.createElement('canvas'), url, {
+            width: 280,
+            margin: 2,
+            color: { dark: '#0d1b4a', light: '#ffffff' }
+        }, function(error, canvas) {
+            if (error) {
+                console.error(error);
+                document.getElementById('qrCanvas').textContent = 'Error generating QR code';
+            } else {
+                canvas.style.borderRadius = '12px';
+                document.getElementById('qrCanvas').appendChild(canvas);
+            }
+        });
+    </script>
+</body>
+</html>

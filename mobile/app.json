@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "KEC Navigator",
+    "slug": "kec-indoor-nav",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0d1b4a"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kec.indoornav",
+      "infoPlist": {
+        "NSMotionUsageDescription": "Used for step detection and indoor positioning"
+      }
+    },
+    "android": {
+      "package": "com.kec.indoornav",
+      "permissions": [
+        "HIGH_SAMPLING_RATE_SENSORS"
+      ]
+    },
+    "plugins": [
+      "expo-sensors"
+    ]
+  }
+}
