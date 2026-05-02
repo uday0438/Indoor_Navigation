@@ -14,24 +14,20 @@ export default function AboutKECScreen() {
   const leadership = [
     {
       name: 'Dr. B.C. Nagaraj', role: 'Founder & Chairman, BCN Group of Institutions',
-      image: require('../../assets/bc_nagaraj.jpg'),
       desc: 'A visionary philanthropist dedicated to excellence in education.',
       longMessage: 'We at Kuppam Engineering College have a vision to impart quality technical education, to bring out the hidden skills and abilities of the students with proper discipline. We are committed to providing meaningful education, research, and training to meet global standards.\n\nWe have put together an experienced team of highly qualified, motivated and dedicated staff, supported by excellent infrastructural facilities to make the institution an ideal place of learning.\n\nOur commitment goes beyond achieving current academic standards. We continuously strive to enhance and upgrade them. Finally, it will give us immense pleasure when students graduated from our college are well placed in their careers.\n\nDr. B C Nagaraj, MBA.,\nFounder & Chairman'
     },
     {
       name: 'Dr. N. Sunil Raj, M.B.B.S.', role: 'Vice-Chairman',
-      image: require('../../assets/sunil_raj.jpg'),
       desc: 'Committed to medical and technical progress.',
       longMessage: 'At Kuppam Engineering College, we are committed to delivering high-quality technical education through a team of highly qualified and experienced faculty members, supported by excellent infrastructural facilities.\n\nBeyond regular academics, we focus on holistic skill development through mandatory certification programs, NPTEL courses, hands-on mini projects, and continuous learning modules spread across all four years. This ensures that every student is industry-ready by the time they reach their final year and fully prepared to excel in placements and future career pathways.\n\nOur mission is to nurture competent, confident, and dynamic engineers who make their parents proud and contribute meaningfully to the progress of our nation.'
     },
     {
       name: 'Sri. N. Sagar Raj', role: 'Secretary',
-      image: require('../../assets/sagar_raj.jpg'),
       desc: 'Dynamic leader focusing on college administration and student growth.'
     },
     {
       name: 'Dr. S. Sudhakar Babu', role: 'Principal',
-      image: require('../../assets/sudhakar_babu.jpg'),
       desc: 'Promoting academic excellence and research innovation.'
     },
   ];
@@ -59,7 +55,9 @@ export default function AboutKECScreen() {
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {/* Hero */}
         <View style={styles.hero}>
-          <Image source={require('../../assets/nav_logo.png')} style={styles.logoImg} />
+          <View style={[styles.logoImg, { backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }]}>
+            <Text style={{ fontSize: 30 }}>🎓</Text>
+          </View>
           <Text style={styles.heroTitle}>Kuppam Engineering College</Text>
           <Text style={styles.heroSub}>Autonomous Institution • Est. 2001</Text>
           <View style={styles.badgeRow}>
@@ -87,14 +85,12 @@ export default function AboutKECScreen() {
           <Text style={styles.cardTitle}>👥 Our Leadership Team</Text>
           {leadership.map((leader, i) => (
             <View key={i} style={styles.leaderRow}>
-              <Image
-                source={leader.image}
-                style={styles.leaderPhoto}
-                defaultSource={require('../../assets/nav_logo.png')}
-              />
+              <View style={[styles.leaderPhoto, { justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f4ff' }]}>
+                <Text style={{ fontSize: 24 }}>👨‍💼</Text>
+              </View>
               <View style={styles.leaderInfo}>
                 <TouchableOpacity onPress={() => showVisionaryMessage(leader)} disabled={!leader.longMessage}>
-                  <Text style={[styles.leaderName, leader.longMessage && { color: COLORS.accent, textDecorationLine: 'underline' }]}>
+                  <Text style={[styles.leaderName, leader.longMessage ? { color: COLORS.accent, textDecorationLine: 'underline' } : {}]}>
                     {leader.name}
                   </Text>
                 </TouchableOpacity>

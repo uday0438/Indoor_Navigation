@@ -68,7 +68,9 @@ export default function HomeScreen() {
       {/* Header with logo and language */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
-          <Image source={require('../../assets/nav_logo.png')} style={styles.logoImg} />
+          <View style={[styles.logoImg, { backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center' }]}>
+            <Text style={{ fontSize: 20 }}>🎓</Text>
+          </View>
           <View>
             <Text style={styles.headerTitle}>{t.appName}</Text>
             <Text style={styles.headerSub}>{t.subtitle}</Text>
@@ -90,7 +92,7 @@ export default function HomeScreen() {
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         {/* Hero card */}
-        <ImageBackground source={require('../../assets/college.jpg')} style={styles.hero} imageStyle={{ borderRadius: 18 }}>
+        <View style={[styles.hero, { backgroundColor: themeColors.primary }]}>
           <View style={styles.heroOverlay}>
             <Text style={styles.heroIcon}>🏛️</Text>
             <Text style={styles.heroTitle}>{t.buildingName}</Text>
@@ -99,7 +101,7 @@ export default function HomeScreen() {
               <Text style={styles.heroBtnText}>{t.startNavigation}</Text>
             </TouchableOpacity>
           </View>
-        </ImageBackground>
+        </View>
 
         {/* Quick cards */}
         <View style={styles.cardGrid}>

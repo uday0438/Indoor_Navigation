@@ -92,10 +92,9 @@ export default function AboutECEScreen() {
         <View style={[styles.card, { borderLeftWidth: 4, borderLeftColor: '#1565C0' }]}>
           <Text style={styles.cardTitle}>👨‍🏫 {t.hodTitle}</Text>
           <View style={styles.profileSection}>
-            <Image
-              source={require('../../assets/hod_ece.jpg')}
-              style={styles.profileAvatar}
-            />
+            <View style={[styles.profileAvatar, { backgroundColor: '#f0f4ff', justifyContent: 'center', alignItems: 'center' }]}>
+              <Text style={{ fontSize: 30 }}>👨‍🏫</Text>
+            </View>
             <View style={styles.profileInfo}>
               <Text style={styles.profileName}>Dr. G. N. Kodanda Ramaiah</Text>
               <Text style={styles.profileRole}>Head of the Department, ECE</Text>
