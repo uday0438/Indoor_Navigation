@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "751f15fc-2c89-417b-9480-f1a2be6b3d96"
+      }
+    },
+    "android": {
+      "package": "com.uday.indoornavigation"
+    }
+  }
+}

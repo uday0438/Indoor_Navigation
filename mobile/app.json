@@ -23,6 +23,11 @@
     },
     "plugins": [
       "expo-sensors"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3f2ec828-7dbe-4402-b764-940140619604"
+      }
+    }
   }
 }

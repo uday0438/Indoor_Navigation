@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      family: 4, // Force IPv4, prevents querySrv ECONNREFUSED on some Windows networks
+      family: 4
     });
     console.log(`✅ MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
