@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════
 
 // CHANGE THIS to your backend server IP
-export const API_URL = 'http://10.22.178.170:3001';
+export const API_URL = 'https://indoor-nav-backend.onrender.com';
 
 // Sensor configuration
 export const SENSOR_CONFIG = {
