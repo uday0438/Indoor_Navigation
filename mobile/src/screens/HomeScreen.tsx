@@ -9,7 +9,8 @@ import {
 import { useNavigation as useRNNav } from '@react-navigation/native';
 import { useNavigation } from '../hooks/useNavigation';
 import { useLanguage, Language, LANGUAGE_NAMES } from '../i18n/LanguageContext';
-import { COLORS } from '../utils/constants';
+import { useThemeColors } from '../hooks/useThemeColors';
+import { useNavStore } from '../store/navigationStore';
 
 const { width } = Dimensions.get('window');
 
@@ -17,6 +18,10 @@ export default function HomeScreen() {
   const navigation = useRNNav<any>();
   const { loadData } = useNavigation();
   const { t, language, setLanguage } = useLanguage();
+  const { theme, setTheme } = useNavStore();
+  const themeColors = useThemeColors();
+  const styles = React.useMemo(() => createStyles(themeColors), [themeColors]);
+
   const [showLangModal, setShowLangModal] = useState(false);
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -52,16 +57,13 @@ export default function HomeScreen() {
   const languages: Language[] = ['en', 'te', 'hi', 'kn', 'ta'];
 
   const teamMembers = [
-    { name: 'Ms. M. Sumalatha', role: t.projectGuide, designation: 'M.Tech, Assistant Professor', image: require('../../assets/sumalatha.jpg'), color: '#1565C0' },
-    { name: 'Ms. P. Sravya', role: `${t.teamLead}, UI/UX Designer`, designation: 'B.Tech', email: 'sravssravyachinni@gmail.com', icon: '👩‍💻', color: '#2E7D32' },
-    { name: 'Ms. T. Pravallika', role: t.frontendDev, designation: 'B.Tech', icon: '👩‍💻', color: '#E65100' },
-    { name: 'Ms. P. Vyshnavi', role: t.backendDev, designation: 'B.Tech', icon: '👩‍💻', color: '#6A1B9A' },
-    { name: 'Ms. V. Mounika', role: t.softwareTesting, designation: 'B.Tech', icon: '👩‍💻', color: '#AD1457' },
+    { name: 'Mr. K. Uday Bhaskar', role: 'Developer', designation: 'B.Tech', icon: '👨‍💻', color: '#1565C0' },
+    { name: 'Ms. P. Sravya', role: `${t.teamLead}, UI/UX Designer`, designation: 'B.Tech', email: 'sravssravyachinni@gmail.com', icon: '👩‍💻', color: '#2E7D32' }
   ];
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor={COLORS.primary} />
+      <StatusBar barStyle="light-content" backgroundColor={themeColors.primary} />
 
       {/* Header with logo and language */}
       <View style={styles.header}>
@@ -72,10 +74,18 @@ export default function HomeScreen() {
             <Text style={styles.headerSub}>{t.subtitle}</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.langBtn} onPress={() => setShowLangModal(true)}>
-          <Text style={styles.langIcon}>🌐</Text>
-          <Text style={styles.langLabel}>{language.toUpperCase()}</Text>
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', gap: 8 }}>
+          <TouchableOpacity 
+            style={styles.langBtn} 
+            onPress={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          >
+            <Text style={styles.langIcon}>{theme === 'light' ? '🌙' : '☀️'}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.langBtn} onPress={() => setShowLangModal(true)}>
+            <Text style={styles.langIcon}>🌐</Text>
+            <Text style={styles.langLabel}>{language.toUpperCase()}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
@@ -156,14 +166,14 @@ export default function HomeScreen() {
           <TextInput
             style={styles.input}
             placeholder={t.yourName}
-            placeholderTextColor={COLORS.textMuted}
+            placeholderTextColor={themeColors.textMuted}
             value={contactName}
             onChangeText={setContactName}
           />
           <TextInput
             style={styles.input}
             placeholder={t.yourEmail}
-            placeholderTextColor={COLORS.textMuted}
+            placeholderTextColor={themeColors.textMuted}
             value={contactEmail}
             onChangeText={setContactEmail}
             keyboardType="email-address"
@@ -171,7 +181,7 @@ export default function HomeScreen() {
           <TextInput
             style={[styles.input, styles.textArea]}
             placeholder={t.yourMessage}
-            placeholderTextColor={COLORS.textMuted}
+            placeholderTextColor={themeColors.textMuted}
             value={contactMsg}
             onChangeText={setContactMsg}
             multiline
@@ -222,10 +232,10 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: COLORS.background },
+const createStyles = (themeColors: any) => StyleSheet.create({
+  container: { flex: 1, backgroundColor: themeColors.background },
   header: {
-    backgroundColor: COLORS.primary, paddingTop: 50, paddingBottom: 14, paddingHorizontal: 16,
+    backgroundColor: themeColors.primary, paddingTop: 50, paddingBottom: 14, paddingHorizontal: 16,
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
   },
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -240,7 +250,7 @@ const styles = StyleSheet.create({
   langLabel: { color: '#fff', fontSize: 11, fontWeight: '700' },
   scroll: { flex: 1 },
   hero: {
-    margin: 16, borderRadius: 18, overflow: 'hidden', backgroundColor: COLORS.primaryLight,
+    margin: 16, borderRadius: 18, overflow: 'hidden', backgroundColor: themeColors.primaryLight,
   },
   heroOverlay: {
     padding: 24, backgroundColor: 'rgba(13, 27, 74, 0.5)',
@@ -252,49 +262,50 @@ const styles = StyleSheet.create({
     marginTop: 16, paddingVertical: 12, paddingHorizontal: 24,
     backgroundColor: '#fff', borderRadius: 10, alignSelf: 'flex-start',
   },
-  heroBtnText: { color: COLORS.primary, fontWeight: '700', fontSize: 14 },
+  heroBtnText: { color: themeColors.primary, fontWeight: '700', fontSize: 14 },
   cardGrid: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 12, gap: 10 },
   card: {
-    width: (width - 44) / 2, backgroundColor: '#fff',
-    borderRadius: 14, padding: 16, borderWidth: 1, borderColor: '#f0f0f0',
+    width: (width - 44) / 2, backgroundColor: themeColors.surface,
+    borderRadius: 14, padding: 16, borderWidth: 1, borderColor: themeColors.border,
   },
   cardIcon: { fontSize: 26, marginBottom: 8 },
-  cardTitle: { fontSize: 14, fontWeight: '700', color: COLORS.primary },
-  cardDesc: { fontSize: 11, color: COLORS.textMuted, marginTop: 2 },
+  cardTitle: { fontSize: 14, fontWeight: '700', color: themeColors.primary },
+  cardDesc: { fontSize: 11, color: themeColors.textMuted, marginTop: 2 },
   section: {
-    margin: 16, marginBottom: 8, backgroundColor: '#fff',
-    borderRadius: 14, padding: 18, borderWidth: 1, borderColor: '#f0f0f0',
+    margin: 16, marginBottom: 8, backgroundColor: themeColors.surface,
+    borderRadius: 14, padding: 18, borderWidth: 1, borderColor: themeColors.border,
   },
-  sectionTitle: { fontSize: 15, fontWeight: '700', color: COLORS.primary, marginBottom: 8 },
-  sectionSubtitle: { fontSize: 11, color: COLORS.textMuted, marginBottom: 12 },
+  sectionTitle: { fontSize: 15, fontWeight: '700', color: themeColors.primary, marginBottom: 8 },
+  sectionSubtitle: { fontSize: 11, color: themeColors.textMuted, marginBottom: 12 },
   chipContainer: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
     paddingVertical: 6, paddingHorizontal: 14,
-    backgroundColor: '#f0f2ff', borderRadius: 20, borderWidth: 1, borderColor: '#d0d5f0',
+    backgroundColor: themeColors.theme === 'dark' ? '#1E293B' : '#f0f2ff', 
+    borderRadius: 20, borderWidth: 1, borderColor: themeColors.theme === 'dark' ? '#334155' : '#d0d5f0',
   },
-  chipText: { fontSize: 12, fontWeight: '600', color: COLORS.primary },
+  chipText: { fontSize: 12, fontWeight: '600', color: themeColors.theme === 'dark' ? '#93C5FD' : themeColors.primary },
   // Team
   teamCard: {
     flexDirection: 'row', alignItems: 'center', gap: 12,
-    padding: 12, marginBottom: 8, backgroundColor: '#fafbff', borderRadius: 12,
+    padding: 12, marginBottom: 8, backgroundColor: themeColors.theme === 'dark' ? '#1E1E1E' : '#fafbff', borderRadius: 12,
     borderLeftWidth: 3,
   },
   teamAvatar: {
     width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center',
   },
   teamInfo: { flex: 1 },
-  teamName: { fontSize: 14, fontWeight: '700', color: COLORS.textPrimary },
+  teamName: { fontSize: 14, fontWeight: '700', color: themeColors.textPrimary },
   teamRole: { fontSize: 11, fontWeight: '600', marginTop: 1 },
-  teamDesig: { fontSize: 10, color: COLORS.textMuted, marginTop: 1 },
-  teamEmail: { fontSize: 10, color: COLORS.accent, marginTop: 2 },
+  teamDesig: { fontSize: 10, color: themeColors.textMuted, marginTop: 1 },
+  teamEmail: { fontSize: 10, color: themeColors.accent, marginTop: 2 },
   // Contact form
   input: {
-    borderWidth: 1, borderColor: '#e0e0e0', borderRadius: 10, padding: 12,
-    fontSize: 14, color: COLORS.textPrimary, marginBottom: 10, backgroundColor: '#fafbfc',
+    borderWidth: 1, borderColor: themeColors.border, borderRadius: 10, padding: 12,
+    fontSize: 14, color: themeColors.textPrimary, marginBottom: 10, backgroundColor: themeColors.theme === 'dark' ? '#121212' : '#fafbfc',
   },
   textArea: { height: 80, textAlignVertical: 'top' },
   sendBtn: {
-    backgroundColor: COLORS.primary, borderRadius: 10, paddingVertical: 14, alignItems: 'center',
+    backgroundColor: themeColors.primary, borderRadius: 10, paddingVertical: 14, alignItems: 'center',
   },
   sendBtnText: { color: '#fff', fontSize: 14, fontWeight: '700' },
   successMsg: {
@@ -302,28 +313,28 @@ const styles = StyleSheet.create({
   },
   successText: { color: '#2E7D32', fontWeight: '600', fontSize: 13 },
   emailBtn: {
-    marginTop: 10, borderWidth: 1, borderColor: COLORS.primary, borderRadius: 10,
+    marginTop: 10, borderWidth: 1, borderColor: themeColors.primary, borderRadius: 10,
     paddingVertical: 12, alignItems: 'center',
   },
-  emailBtnText: { color: COLORS.primary, fontSize: 14, fontWeight: '600' },
+  emailBtnText: { color: themeColors.primary, fontSize: 14, fontWeight: '600' },
   // Modal
   modalOverlay: {
     flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center',
   },
   modalContent: {
-    width: width * 0.8, backgroundColor: '#fff', borderRadius: 20, padding: 24,
+    width: width * 0.8, backgroundColor: themeColors.surface, borderRadius: 20, padding: 24,
   },
-  modalTitle: { fontSize: 18, fontWeight: '800', color: COLORS.primary, textAlign: 'center', marginBottom: 18 },
+  modalTitle: { fontSize: 18, fontWeight: '800', color: themeColors.primary, textAlign: 'center', marginBottom: 18 },
   langOption: {
     flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
     paddingVertical: 14, paddingHorizontal: 16, borderRadius: 10, marginBottom: 6,
   },
-  langOptionActive: { backgroundColor: '#f0f4ff' },
-  langOptionText: { fontSize: 16, color: COLORS.textPrimary },
-  langOptionTextActive: { color: COLORS.primary, fontWeight: '700' },
-  checkMark: { color: COLORS.primary, fontSize: 18, fontWeight: '700' },
+  langOptionActive: { backgroundColor: themeColors.theme === 'dark' ? '#1E293B' : '#f0f4ff' },
+  langOptionText: { fontSize: 16, color: themeColors.textPrimary },
+  langOptionTextActive: { color: themeColors.accent, fontWeight: '700' },
+  checkMark: { color: themeColors.accent, fontSize: 18, fontWeight: '700' },
   modalClose: {
-    marginTop: 12, paddingVertical: 12, backgroundColor: '#f5f5f5', borderRadius: 10, alignItems: 'center',
+    marginTop: 12, paddingVertical: 12, backgroundColor: themeColors.theme === 'dark' ? '#333' : '#f5f5f5', borderRadius: 10, alignItems: 'center',
   },
-  modalCloseText: { color: COLORS.textSecondary, fontWeight: '600' },
+  modalCloseText: { color: themeColors.textSecondary, fontWeight: '600' },
 });

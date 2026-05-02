@@ -126,72 +126,7 @@ export default function AboutECEScreen() {
           </View>
         </View>
 
-        {/* Guide Section */}
-        <View style={[styles.card, { borderLeftWidth: 4, borderLeftColor: '#2E7D32' }]}>
-          <Text style={styles.cardTitle}>👩‍🏫 {t.guideTitle}</Text>
-          <View style={styles.profileSection}>
-            <Image
-              source={require('../../assets/sumalatha.jpg')}
-              style={[styles.profileAvatar, { backgroundColor: '#E8F5E9' }]}
-            />
-            <View style={styles.profileInfo}>
-              <Text style={styles.profileName}>Ms. M. Sumalatha</Text>
-              <Text style={styles.profileRole}>M.Tech, Assistant Professor, Dept. of ECE</Text>
-            </View>
-          </View>
-          <Text style={styles.cardText}>
-            This project has been successfully carried out under the guidance of Ms. M. Sumalatha, Assistant Professor in the Department of Electronics and Communication Engineering. Her continuous support, valuable suggestions, and technical expertise have been instrumental throughout all stages of the project.
-          </Text>
-          <Text style={[styles.cardText, { marginTop: 8 }]}>
-            Under her guidance, the team was able to effectively plan, design, and implement the project with a clear understanding of concepts and practical approaches. Her encouragement and mentorship have played a significant role in achieving the project objectives.
-          </Text>
-          <Text style={[styles.sectionLabel, { marginTop: 12 }]}>{t.contributionTitle}</Text>
-          {[
-            'Provided consistent guidance throughout the project lifecycle',
-            'Assisted in design, development, and implementation',
-            'Offered valuable technical insights and suggestions',
-            'Encouraged a structured and practical approach to problem-solving',
-          ].map((item, i) => (
-            <View key={i} style={styles.bulletRow}>
-              <View style={[styles.bulletDot, { backgroundColor: '#2E7D32' }]} />
-              <Text style={styles.bulletText}>{item}</Text>
-            </View>
-          ))}
-        </View>
 
-        {/* Second Guide Section */}
-        <View style={[styles.card, { borderLeftWidth: 4, borderLeftColor: '#F57C00' }]}>
-          <Text style={styles.cardTitle}>👨‍🏫 Additional Guidance</Text>
-          <View style={styles.profileSection}>
-            <Image
-              source={require('../../assets/nagapavan.jpeg')}
-              style={styles.profileAvatar}
-              resizeMode="cover"
-            />
-            <View style={styles.profileInfo}>
-              <Text style={styles.profileName}>Mr. S. Naga Pavan Kumar Reddy</Text>
-              <Text style={styles.profileRole}>ECE Lab Assistant / IOT Trainer</Text>
-            </View>
-          </View>
-          <Text style={styles.cardText}>
-            We extend our heartfelt gratitude to Mr. S. Naga Pavan Kumar Reddy for his invaluable technical support and guidance throughout the development of this project. His deep knowledge of IoT systems, sensors, and practical implementation helped the team overcome numerous technical challenges.
-          </Text>
-          <Text style={[styles.cardText, { marginTop: 8 }]}>
-            His willingness to assist with hardware debugging, sensor calibration, and system integration proved to be a critical factor in the successful execution of the indoor navigation tracking features.
-          </Text>
-          <Text style={[styles.sectionLabel, { marginTop: 12 }]}>{t.contributionTitle}</Text>
-          {[
-            'Provided crucial technical support for IoT and sensor integration',
-            'Assisted the team in hardware troubleshooting and calibration',
-            'Offered innovative, practical solutions for real-time tracking issues',
-            'Supported the development and testing of system performance',
-          ].map((item, i) => (
-            <View key={i} style={styles.bulletRow}>
-              <View style={[styles.bulletDot, { backgroundColor: '#F57C00' }]} />
-              <Text style={styles.bulletText}>{item}</Text>
-            </View>
-          ))}
-        </View>
 
         <View style={{ height: 40 }} />
       </ScrollView>

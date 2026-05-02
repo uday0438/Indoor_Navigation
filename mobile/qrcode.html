@@ -80,19 +80,20 @@
         
         <div class="label">Expo Go Link</div>
         <div class="link-box">
-            <a href="exp://nnwekxm-anonymous-8081.exp.direct" id="expoLink">exp://nnwekxm-anonymous-8081.exp.direct</a>
+            <a href="exp://10.22.178.170:8081" id="expoLink">exp://10.22.178.170:8081</a>
         </div>
 
         <div class="instructions">
             <p><strong>Instructions:</strong></p>
-            <p>1. Install <strong>Expo Go</strong> on your phone</p>
-            <p>2. Scan the QR code above with your phone camera</p>
-            <p>3. Or open the link in Expo Go app directly</p>
+            <p>1. Connect your phone to the same Wi-Fi as your computer.</p>
+            <p>2. Install <strong>Expo Go</strong> on your phone</p>
+            <p>3. Scan the QR code above with your phone camera</p>
+            <p>4. Or open the link in Expo Go app directly</p>
         </div>
     </div>
 
     <script>
-        const url = "exp://nnwekxm-anonymous-8081.exp.direct";
+        const url = "exp://10.22.178.170:8081";
         QRCode.toCanvas(document.createElement('canvas'), url, {
             width: 280,
             margin: 2,

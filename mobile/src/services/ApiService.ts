@@ -12,21 +12,29 @@ class ApiService {
   }
 
   private async fetch<T>(path: string, options?: RequestInit): Promise<T> {
-    const res = await fetch(`${this.baseUrl}${path}`, {
-      headers: { 
-        'Content-Type': 'application/json',
-        'bypass-tunnel-reminder': 'true'
-      },
-      ...options,
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
 
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({ error: 'Network error' }));
-      throw new Error(err.error || `HTTP ${res.status}`);
+    try {
+      const res = await fetch(`${this.baseUrl}${path}`, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'bypass-tunnel-reminder': 'true'
+        },
+        signal: controller.signal,
+        ...options,
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ error: 'Network error' }));
+        throw new Error(err.error || `HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data.data;
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    const data = await res.json();
-    return data.data;
   }
 
   // ─── Locations ──────────────────────────────

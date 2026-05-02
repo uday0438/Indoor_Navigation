@@ -57,6 +57,31 @@ export const COLORS = {
   stairs: { bg: '#ECEFF1', border: '#78909C', text: '#37474F' },
 };
 
+export const DARK_COLORS = {
+  primary: '#090e29',
+  primaryLight: '#131b40',
+  accent: '#1E88E5',
+  accentLight: '#64B5F6',
+  success: '#66BB6A',
+  warning: '#FFA726',
+  error: '#EF5350',
+  background: '#121212',
+  surface: '#1E1E1E',
+  textPrimary: '#FFFFFF',
+  textSecondary: '#B0BEC5',
+  textMuted: '#78909C',
+  border: '#333333',
+  corridor: '#2C2C2C',
+  // Room type colors for dark mode (adjusted for readability)
+  room: { bg: '#333120', border: '#FBC02D', text: '#FFF59D' },
+  classroom: { bg: '#1B2E20', border: '#388E3C', text: '#A5D6A7' },
+  lab: { bg: '#16283F', border: '#1976D2', text: '#90CAF9' },
+  office: { bg: '#3E2713', border: '#F57C00', text: '#FFCC80' },
+  auditorium: { bg: '#29183B', border: '#7B1FA2', text: '#CE93D8' },
+  library: { bg: '#3D1627', border: '#C2185B', text: '#F48FB1' },
+  stairs: { bg: '#263238', border: '#546E7A', text: '#B0BEC5' },
+};
+
 // Floor metadata
 export const FLOOR_NAMES: Record<number, string> = {
   0: 'Ground Floor',

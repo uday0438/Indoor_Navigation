@@ -48,6 +48,10 @@ interface NavStore {
   voiceLanguage: 'en' | 'hi' | 'te';
   setVoiceLanguage: (lang: 'en' | 'hi' | 'te') => void;
 
+  // ─── Theme ─────────────────────────────
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+
   // ─── Actions ────────────────────────────
   resetNavigation: () => void;
 }
@@ -92,6 +96,10 @@ export const useNavStore = create<NavStore>((set) => ({
   setIsMuted: (isMuted) => set({ isMuted }),
   voiceLanguage: 'en',
   setVoiceLanguage: (lang) => set({ voiceLanguage: lang }),
+
+  // Theme
+  theme: 'light',
+  setTheme: (theme) => set({ theme }),
 
   // Reset
   resetNavigation: () => set({
