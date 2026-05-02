@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity, TextInput,
-  StyleSheet, StatusBar, Dimensions, Modal, Alert, Linking, ImageBackground, Image
+  StyleSheet, StatusBar, Dimensions, Modal, Alert, Linking
 } from 'react-native';
 import { useNavigation as useRNNav } from '@react-navigation/native';
 import { useNavigation } from '../hooks/useNavigation';
@@ -140,11 +140,7 @@ export default function HomeScreen() {
           {teamMembers.map((member, i) => (
             <View key={i} style={[styles.teamCard, { borderLeftColor: member.color }]}>
               <View style={[styles.teamAvatar, { backgroundColor: member.color + '15' }]}>
-                {member.image ? (
-                  <Image source={member.image} style={{ width: 48, height: 48, borderRadius: 24 }} />
-                ) : (
-                  <Text style={{ fontSize: 24 }}>{member.icon}</Text>
-                )}
+                <Text style={{ fontSize: 24 }}>{member.icon}</Text>
               </View>
               <View style={styles.teamInfo}>
                 <Text style={styles.teamName}>{member.name}</Text>
