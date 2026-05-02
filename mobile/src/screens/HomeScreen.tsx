@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity, TextInput,
-  StyleSheet, StatusBar, Dimensions, Modal, Alert, Linking
+  StyleSheet, StatusBar, Dimensions, Modal, Alert, Linking, Image, ImageBackground
 } from 'react-native';
 import { useNavigation as useRNNav } from '@react-navigation/native';
 import { useNavigation } from '../hooks/useNavigation';
