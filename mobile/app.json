@@ -15,14 +15,22 @@
         "NSMotionUsageDescription": "Used for step detection and indoor positioning"
       }
     },
+    "icon": "./assets/nav_logo.png",
     "android": {
       "package": "com.kec.indoornav",
       "permissions": [
-        "HIGH_SAMPLING_RATE_SENSORS"
-      ]
+        "android.permission.HIGH_SAMPLING_RATE_SENSORS",
+        "CAMERA",
+        "RECORD_AUDIO"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/nav_logo.png",
+        "backgroundColor": "#0d1b4a"
+      }
     },
     "plugins": [
-      "expo-sensors"
+      "expo-sensors",
+      "expo-camera"
     ],
     "extra": {
       "eas": {

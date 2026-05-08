@@ -57,8 +57,8 @@ export default function HomeScreen() {
   const languages: Language[] = ['en', 'te', 'hi', 'kn', 'ta'];
 
   const teamMembers = [
-    { name: 'Mr. K. Uday Bhaskar', role: 'Developer', designation: 'B.Tech', icon: '👨‍💻', color: '#1565C0' },
-    { name: 'Ms. P. Sravya', role: `${t.teamLead}, UI/UX Designer`, designation: 'B.Tech', email: 'sravssravyachinni@gmail.com', icon: '👩‍💻', color: '#2E7D32' }
+    { name: 'Ms. P. Sravya', role: `${t.teamLead}, UI/UX Designer`, designation: 'B.Tech', email: 'sravssravyachinni@gmail.com', icon: '👩‍💻', color: '#2E7D32'},
+    { name: 'Mr. K. Uday Bhaskar', role: 'Developer', designation: 'B.Tech', icon: '👨‍💻', color: '#1565C0'  }
   ];
 
   return (

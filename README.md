@@ -7,6 +7,22 @@
 
 An AI-powered, sensor-driven indoor navigation application designed specifically for the Kuppam Engineering College (KEC) campus. This mobile application solves the "indoor GPS blind-spot" by utilizing advanced Pedestrian Dead Reckoning (PDR) and custom vector mapping to provide highly accurate, offline-capable wayfinding.
 
+---
+
+## 📲 Quick Access (Production)
+
+| Item | Details |
+| :--- | :--- |
+| **Backend API** | [https://indoor-nav-backend.onrender.com](https://indoor-nav-backend.onrender.com) |
+| **Android APK** | [**Download Latest APK**](https://expo.dev/accounts/uday0438/projects/kec-indoor-nav/builds/3e2ffa28-8fef-4375-8d63-900928b8b709) |
+| **QR Code** | Scan the QR code below with your phone camera to download the app directly. |
+
+<p align="center">
+  <img src="mobile/assets/build_qr.png" width="250" alt="EAS Build QR Code">
+</p>
+
+---
+
 ## ✨ Key Features
 
 - **📍 Sensor Fusion Navigation:** Uses smartphone Accelerometers, Gyroscopes, and Magnetometers to track movement with sub-meter accuracy without relying on external hardware (BLE/Beacons).
@@ -24,27 +40,41 @@ This project is built using a decoupled Client-Server architecture:
 *   **Backend (API):** Node.js, Express.js, Socket.IO (Real-time tracking).
 *   **Database:** MongoDB Atlas & Mongoose (Spatial Node storage).
 
-## 🚀 Getting Started
+## 🚀 Step-by-Step: How to Proceed
 
-### Prerequisites
-*   Node.js (v18+)
-*   Expo CLI (`npm install -g expo-cli`)
-*   MongoDB Atlas Account (or local MongoDB server)
+### 1. Backend Hosting (Render)
+The backend is already hosted on Render. If you need to re-deploy:
+1. Push the `backend` folder to a new GitHub repository.
+2. Create a "Web Service" on [Render.com](https://render.com).
+3. Set the build command to `npm install` and start command to `node server.js`.
+4. Update the `MONGODB_URI` environment variable.
+
+### 2. Mobile App Configuration
+Before building your own APK, ensure the API points to your live server:
+1. Open `mobile/src/utils/constants.ts`.
+2. Set `API_URL` to your hosted URL (e.g., `https://your-app.onrender.com`).
+
+### 3. Generate Your Own APK
+1. Install EAS CLI: `npm install -g eas-cli`.
+2. Login: `eas login`.
+3. Run Build: `eas build -p android --profile preview`.
+4. Follow the download link provided at the end of the build.
+
+## 🛠️ Local Development Setup
 
 ### Backend Setup
 ```bash
 cd backend
 npm install
 # Configure your .env file with your MongoDB URI
-npm run seed  # Seeds the database with KEC map data
-npm run dev   # Starts the Express server
+node src/data/seedData.js  # Seeds the database with KEC map data
+node server.js             # Starts the server
 ```
 
 ### Mobile App Setup
 ```bash
 cd mobile
 npm install
-# Ensure the API_URL in src/utils/constants.ts points to your backend IP
 npx expo start
 ```
 *Scan the QR code with the **Expo Go** app on your Android or iOS device to start testing.*
@@ -55,3 +85,4 @@ npx expo start
 
 ---
 *Developed for the Department of Electronics & Communication Engineering, Kuppam Engineering College.*
+
