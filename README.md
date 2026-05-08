@@ -14,12 +14,7 @@ An AI-powered, sensor-driven indoor navigation application designed specifically
 | Item | Details |
 | :--- | :--- |
 | **Backend API** | [https://indoor-nav-backend.onrender.com](https://indoor-nav-backend.onrender.com) |
-| **Android APK** | [**Download Latest APK**](https://expo.dev/accounts/uday0438/projects/kec-indoor-nav/builds/3e2ffa28-8fef-4375-8d63-900928b8b709) |
-| **QR Code** | Scan the QR code below with your phone camera to download the app directly. |
-
-<p align="center">
-  <img src="mobile/assets/build_qr.png" width="250" alt="EAS Build QR Code">
-</p>
+| **Android APK** | [**Download Latest APK**](https://expo.dev/accounts/uday0438/projects/kec-indoor-nav/builds/cd5b2794-3954-4ea6-b40d-519174e968e2) |
 
 ---
 
